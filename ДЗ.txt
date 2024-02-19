@@ -1,0 +1,125 @@
+//1
+class Program
+{
+    static void Main()
+    {
+        char[] arr = { 'a', 'b', 'c', ':', 'd', 'e', ':', 'f' };
+        List<char> newArr = new List<char>();
+        int count = 0;
+
+        foreach (char c in arr)
+        {
+            if (c != ':')
+            {
+                newArr.Add(c);
+            }
+            else
+            {
+                count++;
+            }
+        }
+
+        Console.WriteLine("Массив без двоеточий: " + string.Join(", ", newArr));
+        Console.WriteLine("Количество удаленных символов двоеточия: " + count);
+    }
+}
+
+//2
+
+//3
+class Program
+{
+    static void Main()
+    {
+        char[] arr = { 'h', 't', 'i', 'w', ' ', 'e', 's', 'r', 'o', 'v', 'e', 'r', 'p', 'o', ' ', 'e', 'h', 't' };
+        
+        string message = DecryptMessage(arr);
+        
+        Console.WriteLine("Расшифрованное сообщение: " + message);
+    }
+
+    static string DecryptMessage(char[] arr)
+    {
+        Array.Reverse(arr); 
+
+        string decryptedMessage = "";
+        string word = "";
+
+        foreach (char c in arr)
+        {
+            if (c == ' ')
+            {
+                char[] wordArr = word.ToCharArray();
+                Array.Reverse(wordArr);
+                decryptedMessage += new string(wordArr) + " ";
+                word = "";
+            }
+            else
+            {
+                word += c;
+            }
+        }
+
+        char[] lastWordArr = word.ToCharArray();
+        Array.Reverse(lastWordArr);
+        decryptedMessage += new string(lastWordArr);
+
+        return decryptedMessage;
+    }
+}
+
+//4
+class Program
+{
+    static void Main()
+    {
+        string input = "((Hello) [world])";
+
+        int roundBracketCount = 0;
+        int squareBracketCount = 0;
+
+        foreach (char c in input)
+        {
+            if (c == '(')
+            {
+                roundBracketCount++;
+            }
+            else if (c == ')')
+            {
+                roundBracketCount++;
+            }
+            else if (c == '[')
+            {
+                squareBracketCount++;
+            }
+            else if (c == ']')
+            {
+                squareBracketCount++;
+            }
+        }
+
+        Console.WriteLine("Количество круглых скобок: " + roundBracketCount);
+        Console.WriteLine("Количество квадратных скобок: " + squareBracketCount);
+    }
+}
+
+//5
+class Program
+{
+    static void Main()
+    {
+        string input = "Пример строки с пробелом в конце ";
+        int lastSpaceIndex = input.LastIndexOf(' ');
+
+        if (lastSpaceIndex != -1)
+        {
+            string newString = input.Remove(lastSpaceIndex, 1);
+            Console.WriteLine("Строка после удаления последнего пробела: " + newString);
+        }
+        else
+        {
+            Console.WriteLine("Пробел не найден в строке.");
+        }
+    }
+}
+
